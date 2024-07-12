@@ -6,7 +6,6 @@ import {
   userchange,
   rerenderchange,
 } from "../redux/informationslice";
-import { GetMembers } from "../../../Backend/controller/group";
 
 function Info({ loadinfo, setLoadinfo }) {
   const isDarkMode = useSelector((state) => state.information.isDarkMode);
