@@ -1,0 +1,54 @@
+.messageContainer {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .messageBubble {
+    position: relative;
+    padding: 1rem;
+    max-width: 80%;
+    word-break: break-word;
+  }
+  
+  .sent {
+    background-color: #d1e7dd;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  
+  .received {
+    background-color: #f8d7da;
+    margin-left: 0;
+    margin-right: auto;
+  }
+  
+  .menu {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .menuItem {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .menuItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .messageInput {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+  }
+  
+  .footer {
+    background-color: #f9f9f9;
+    border-top: 1px solid #e1e1e1;
+  }
+  
