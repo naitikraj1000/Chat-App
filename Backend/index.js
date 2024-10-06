@@ -22,10 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+https://chat-6whowx1fa-naitikraj1000s-projects.vercel.app/
+
 // Configure CORS
 app.use(cors({
     // origin: 'http://localhost:5173', // Your frontend URL
-    origin: ['https://chat-df1vstcqu-naitikraj1000s-projects.vercel.app','https://chat-app-production-0bda.up.railway.app', 'http://localhost:5173'], // Your frontend URL
+    origin: ['https://chat-df1vstcqu-naitikraj1000s-projects.vercel.app/','https://chat-app-production-0bda.up.railway.app', 'http://localhost:5173'], // Your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Request methods to enable
     credentials: true, // Enable cookies and other credentials
 }));
