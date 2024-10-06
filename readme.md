@@ -4,7 +4,8 @@ A real-time chat application built with React and Express.js, offering personal 
 
 ## Deployment Link
 
-[Chat App Deployment](https://chat-app-production-0bda.up.railway.app/)
+<!-- [Chat App Deployment](https://chat-app-production-0bda.up.railway.app/) -->
+[Chat App Deployment](https://chat-df1vstcqu-naitikraj1000s-projects.vercel.app/)
 
 ### Credentials for Testing
 
