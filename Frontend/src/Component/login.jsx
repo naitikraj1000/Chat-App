@@ -41,7 +41,7 @@ function Login() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // Submit the form data (event.target) to the server
+    
     const form = new FormData(event.target);
     const email = form.get("email");
     const password = form.get("password");
