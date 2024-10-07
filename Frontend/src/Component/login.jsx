@@ -41,7 +41,7 @@ function Login() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    
+    // Login button
 
     const form = new FormData(event.target);
     const email = form.get("email");
