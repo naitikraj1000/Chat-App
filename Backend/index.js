@@ -26,6 +26,7 @@ https://chat-app-alpha-khaki.vercel.app
 // Configure CORS
 app.use(cors({
     // origin: 'http://localhost:5173', // Your frontend URL
+    // 'www.rajnaitik.work.gd'
     origin: ['https://chat-app-alpha-khaki.vercel.app','https://chat-app-production-0bda.up.railway.app', 'http://localhost:5173'], // Your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Request methods to enable
     credentials: true, // Enable cookies and other credentials

@@ -47,6 +47,7 @@ function Login() {
 
     console.log(email, password, `${import.meta.env.VITE_BACKEND_URL}/signin`);
 
+
     axios.post(`${import.meta.env.VITE_BACKEND_URL}/signin`, form, {
       withCredentials: true, // Ensure credentials (like cookies) are included
       headers: {
