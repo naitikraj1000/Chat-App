@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: 'https://api.multiavatar.com/Binx%20Bond.png',
     },
+    forgetPassword: {
+      type: Object,
+      default: undefined,
+    },
   }, {
     timestamps: true,
   });

@@ -10,14 +10,19 @@ import Login from "./Component/login.jsx";
 import Home from "./Component/navigation.jsx";
 import Registration from "./Component/registration.jsx";
 import { authchange, userchange } from "./redux/informationslice";
-
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import Forgetpassword from "./Component/forgetpassword.jsx";
 function User() {
   const { userId } = useParams();
   return <h1>This Url {userId} is not correct</h1>;
 }
 
+
+
 function App() {
   const dispatch = useDispatch();
+
   const isAuth = useSelector((state) => state.information.isAuth);
 
   fetch(`${import.meta.env.VITE_BACKEND_URL}/auth`, {
@@ -57,6 +62,10 @@ function App() {
         {
           path: "/:userId",
           element: <User />,
+        },
+        {
+          path: "/forget_password",
+          element:<Forgetpassword/>
         },
       ])}
     />

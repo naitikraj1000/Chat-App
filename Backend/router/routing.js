@@ -1,7 +1,7 @@
 import express from 'express';
 import registeration from '../controller/user.js';
 import multer_upload from '../multer/multer.js';
-import Login from '../controller/login.js';
+import Login,{ForgetPassword,verifyOTP} from '../controller/login.js';
 import jwt from 'jsonwebtoken';
 import SendMessage from '../controller/message.js';
 import { GetMessage } from '../controller/message.js';
@@ -14,6 +14,8 @@ const routing = express.Router();
 
 routing.post('/register', multer_upload.single("file"), registeration);
 routing.post('/signin', multer_upload.single("file"), Login);
+routing.post('/forget_password',multer_upload.single('file'),ForgetPassword)
+routing.post('/verify_otp',multer_upload.single('file'),verifyOTP)
 
 routing.post('/auth', multer_upload.single("file"), (req, res) => {
   const refreshToken = req.cookies.refreshToken;

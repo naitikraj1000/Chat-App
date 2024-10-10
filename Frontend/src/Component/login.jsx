@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Notification from "./notfication"
-import axios from 'axios';
+import Notification from "./notfication";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  authchange,
-  modechange,
-  userchange,
-} from "../redux/informationslice";
+import { authchange, modechange, userchange } from "../redux/informationslice";
 import logo from "../assets/logo.png";
 
 function Login() {
@@ -49,33 +45,33 @@ function Login() {
 
     console.log(email, password, `${import.meta.env.VITE_BACKEND_URL}/signin`);
 
-
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/signin`, form, {
-      withCredentials: true, // Ensure credentials (like cookies) are included
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then(response => {
-      const msg = response.data;
-      console.log("Response from the server", msg);
-      if (msg.error) {
-        console.log("Error in Signin User", msg.error);
-        setResponseMessage({ msg: msg.error, date: new Date() }); // Update the state with the new message
-        return;
-      } else {
-        setResponseMessage({ msg: msg.success, date: new Date() }); // Update the state with the new message
-        console.log("Login Successful", msg);
-        // Make auth true and store the user information in the Slice (Redux) so that we can access it from anywhere
-        dispatch(userchange(msg.user));
-        dispatch(authchange(true));
-        // console.log("User Information", msg.user);
-        navigate("/");
-      }
-    })
-    .catch(error => {
-      console.log("Error in Signin User from Client Side", error);
-    });
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/signin`, form, {
+        withCredentials: true, // Ensure credentials (like cookies) are included
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        const msg = response.data;
+        console.log("Response from the server", msg);
+        if (msg.error) {
+          console.log("Error in Signin User", msg.error);
+          setResponseMessage({ msg: msg.error, date: new Date() }); // Update the state with the new message
+          return;
+        } else {
+          setResponseMessage({ msg: msg.success, date: new Date() }); // Update the state with the new message
+          console.log("Login Successful", msg);
+          // Make auth true and store the user information in the Slice (Redux) so that we can access it from anywhere
+          dispatch(userchange(msg.user));
+          dispatch(authchange(true));
+          // console.log("User Information", msg.user);
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.log("Error in Signin User from Client Side", error);
+      });
   }
 
   return (
@@ -121,13 +117,10 @@ function Login() {
             )}
           </button>
 
-  
-
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          
-          <img
+            <img
               className="mx-auto h-10 w-auto"
-              style={{ borderRadius: '50%', height: '40px', width: '40px' }}
+              style={{ borderRadius: "50%", height: "40px", width: "40px" }}
               src={logo}
               alt="chat_app logo"
             />
@@ -165,11 +158,13 @@ function Login() {
                   >
                     Password
                   </label>
-                  {/* <div className="text-sm">
-                    <Link to="" className={`font-semibold ${linkColor}`}>
+
+                  <div className="text-sm">
+                    <Link to="/forget_password" className={`font-semibold ${linkColor}`}>
                       Forgot password?
                     </Link>
-                  </div> */}
+                  </div>  
+
                 </div>
                 <div className="mt-2">
                   <input
