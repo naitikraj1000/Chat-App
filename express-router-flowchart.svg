@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" font-size="24" text-anchor="middle" font-weight="bold">Express.js Router Procedures</text>
+  
+  <!-- Router box -->
+  <rect x="50" y="50" width="700" height="500" fill="#f0f0f0" stroke="#333" stroke-width="2" />
+  <text x="400" y="80" font-size="18" text-anchor="middle" font-weight="bold">Express Router</text>
+  
+  <!-- Routes -->
+  <g font-size="14">
+    <g transform="translate(100, 120)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /register</text>
+    </g>
+    <g transform="translate(100, 170)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /signin</text>
+    </g>
+    <g transform="translate(100, 220)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /forget_password</text>
+    </g>
+    <g transform="translate(100, 270)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /verify_otp</text>
+    </g>
+    <g transform="translate(100, 320)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /auth</text>
+    </g>
+    <g transform="translate(100, 370)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /logout</text>
+    </g>
+    <g transform="translate(100, 420)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /send_msg</text>
+    </g>
+    <g transform="translate(100, 470)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /get_msg</text>
+    </g>
+    
+    <g transform="translate(500, 120)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /get_friend</text>
+    </g>
+    <g transform="translate(500, 170)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /set_friend</text>
+    </g>
+    <g transform="translate(500, 220)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /get_profile</text>
+    </g>
+    <g transform="translate(500, 270)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /set_profile</text>
+    </g>
+    <g transform="translate(500, 320)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /set_group</text>
+    </g>
+    <g transform="translate(500, 370)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /add_member</text>
+    </g>
+    <g transform="translate(500, 420)">
+      <rect width="200" height="30" fill="#e6f3ff" stroke="#333" />
+      <text x="100" y="20" text-anchor="middle">POST /get_members</text>
+    </g>
+  </g>
+  
+  <!-- Arrows -->
+  <g stroke="#333" stroke-width="1" marker-end="url(#arrowhead)">
+    <line x1="300" y1="135" x2="350" y2="135" />
+    <line x1="300" y1="185" x2="350" y2="185" />
+    <line x1="300" y1="235" x2="350" y2="235" />
+    <line x1="300" y1="285" x2="350" y2="285" />
+    <line x1="300" y1="335" x2="350" y2="335" />
+    <line x1="300" y1="385" x2="350" y2="385" />
+    <line x1="300" y1="435" x2="350" y2="435" />
+    <line x1="300" y1="485" x2="350" y2="485" />
+    
+    <line x1="450" y1="135" x2="500" y2="135" />
+    <line x1="450" y1="185" x2="500" y2="185" />
+    <line x1="450" y1="235" x2="500" y2="235" />
+    <line x1="450" y1="285" x2="500" y2="285" />
+    <line x1="450" y1="335" x2="500" y2="335" />
+    <line x1="450" y1="385" x2="500" y2="385" />
+    <line x1="450" y1="435" x2="500" y2="435" />
+  </g>
+</svg>

@@ -68,5 +68,5 @@ async function registeration(req, res) {
 
 
 
-export {hashPassword};
+export { hashPassword };
 export default registeration;

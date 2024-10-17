@@ -11,7 +11,7 @@ import mongoose from 'mongoose';
 
 
 
-dotenv.config();
+dotenv.config();   
 Connect_DB();
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 // Configure CORS
 app.use(cors({
-    origin: ['https://chat-app-umber-beta.vercel.app','https://chat-app-production-0bda.up.railway.app', 'http://localhost:5173'], // Your frontend URL
+    origin: ['https://chat-app-umber-beta.vercel.app', 'https://chat-app-production-0bda.up.railway.app', 'http://localhost:5173'], // Your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Request methods to enable
     credentials: true, // Enable cookies and other credentials
 }));
@@ -75,17 +75,17 @@ messageStream.on('change', (change) => {
 // Functions to handle changes for each model
 function handleBioChange(change) {
     // Emit the appropriate Socket.IO event with the updated data
-    io.emit("render",'bioUpdated');
+    io.emit("render", 'bioUpdated');
 }
 
 function handleFriendChange(change) {
     // Emit the appropriate Socket.IO event with the updated data
-    io.emit("render",'friendUpdated');
+    io.emit("render", 'friendUpdated');
 }
 
 function handleMessageChange(change) {
     // Emit the appropriate Socket.IO event with the updated data
-    io.emit("render",'messageUpdated');
+    io.emit("render", 'messageUpdated');
 }
 
 

@@ -1,0 +1,296 @@
+                    [
+  {
+    "schemaType": "Collection",
+    "name": "User.model.js",
+    "defaultValue": "",
+    "description": "",
+    "fields": [
+      {
+        "schemaType": "Field",
+        "name": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "unique": true,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "name",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 1,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "email",
+        "type": "String",
+        "required": false,
+        "unique": true,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "password",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "profilePicture",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "forgetPassword",
+        "type": "ObjectId",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      }
+    ]
+  },
+  {
+    "schemaType": "Collection",
+    "name": "message.model.js",
+    "defaultValue": "",
+    "description": "",
+    "fields": [
+      {
+        "schemaType": "Field",
+        "name": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "unique": true,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "sender",
+        "type": "Object",
+        "required": true,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "msg",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "file",
+        "type": "Object",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "date",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "receiver",
+        "type": "Object",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      }
+    ]
+  },
+  {
+    "schemaType": "Collection",
+    "name": "grp.model.js",
+    "defaultValue": "",
+    "description": "",
+    "fields": [
+      {
+        "schemaType": "Field",
+        "name": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "unique": true,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "name",
+        "type": "String",
+        "required": true,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "members",
+        "type": "Array",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "admin",
+        "type": "ObjectId",
+        "required": false,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "profilePicture",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "https://api.multiavatar.com/Binx%20Bond.png",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      }
+    ]
+  },
+  {
+    "schemaType": "Collection",
+    "name": "friend.model.js",
+    "defaultValue": "",
+    "description": "",
+    "fields": [
+      {
+        "schemaType": "Field",
+        "name": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "unique": true,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "user",
+        "type": "ObjectId",
+        "required": true,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "friends",
+        "type": "Array",
+        "required": true,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      }
+    ]
+  },
+  {
+    "schemaType": "Collection",
+    "name": "bio.model.js",
+    "defaultValue": "",
+    "description": "",
+    "fields": [
+      {
+        "schemaType": "Field",
+        "name": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "unique": true,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "user",
+        "type": "ObjectId",
+        "required": true,
+        "unique": false,
+        "defaultValue": "",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      },
+      {
+        "schemaType": "Field",
+        "name": "bio",
+        "type": "String",
+        "required": false,
+        "unique": false,
+        "defaultValue": "\"\"",
+        "description": "",
+        "index": 0,
+        "customProps": []
+      }
+    ]
+  }
+]
+                
