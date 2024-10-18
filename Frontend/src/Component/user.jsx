@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+
+
+import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { chatchange, userchange } from "../redux/informationslice";
-
+import { modechange, rerenderchange } from "../redux/informationslice";
+import io from "socket.io-client";
+import { useSocket } from "../contextApi/socetcontext";
+import { useRef } from "react";
 const UserComponent = () => {
   const isDarkMode = useSelector((state) => state.information.isDarkMode);
   const user = useSelector((state) => state.information.user);
   const [friends, setFriends] = useState([]);
   const [Searchfriend, setSearchfriend] = useState([]);
-
+  const [onlineUsers, setOnlineUsers] = useState(new Map());
   const inputColor = isDarkMode ? "text-gray-300" : "text-gray-800";
   const buttonBgColor = isDarkMode ? "bg-blue-500" : "bg-blue-400";
   const buttonHoverColor = isDarkMode
@@ -23,6 +28,43 @@ const UserComponent = () => {
   const userPadding = "p-4";
 
   const dispatch = useDispatch();
+
+  const [render, setRender] = useState(
+    useSelector((state) => {
+      return state.information.rerender;
+    })
+  );
+
+  // const socket = useMemo(() => {
+  //   useSocket();
+  // }, []);
+
+  // const socket = useSocket();
+  const socket = useMemo(() => io(import.meta.env.VITE_BACKEND_URL), []);
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("Connected to the server");
+      console.log("Socket ID", socket.id);
+
+      socket.emit("join_server", { user: user });
+
+      socket.on("online_friends", (data) => {
+        console.log("Online Friends", data);
+        const temp_map = new Map();
+        data.forEach((user) => {
+          console.log("User is Online", user.email);
+          temp_map.set(user.email, true);
+        });
+        setOnlineUsers(temp_map);
+      });
+    });
+  }, []);
+
+  socket.on("render", (msg) => {
+    console.log("Rerendering", msg);
+    dispatch(rerenderchange(!render));
+    setRender(!render);
+  });
 
   const fetchFriends = async () => {
     try {
@@ -53,24 +95,19 @@ const UserComponent = () => {
     let searchtext = e.target.value;
     console.log("Searching Name ", searchtext);
 
-    if(searchtext === " "){
+    if (searchtext === " ") {
       return;
     }
 
-    // convert search text to lowercase
-    searchtext = searchtext.toLowerCase();
+    searchtext = searchtext.toLowerCase().trim();
 
-    searchtext=searchtext.trim();
-
-    // filter friends based on search text such that if any friend name contains search text then it will be shown
     const filteredFriends = Searchfriend.filter((friend) =>
       friend.name.toLowerCase().includes(searchtext)
     );
 
     setFriends(filteredFriends);
-
-
   }
+
   useEffect(() => {
     if (user) {
       console.log("Fetching friends... Frontend/src/Component/user.jsx:134");
@@ -88,7 +125,6 @@ const UserComponent = () => {
       className={`hidden md:block w-2/5 sm:w-1/2 md:w-2/5 lg:w-1/3 xl:w-1/3 border-l border-gray-400 pl-4 ml-20 ${bgColor} border-r-2 ${borderColor}`}
     >
       <div className={`h-full ${bgColor} overflow-hidden`}>
-        {/* Search Box */}
         <div
           className={`flex items-center justify-between border-b ${borderColor} py-2`}
         >
@@ -98,9 +134,6 @@ const UserComponent = () => {
             onChange={handleSearch}
             className={`px-2 py-1 w-full focus:outline-none ${inputColor} ${textColor} ${bgColor} border ${borderColor} rounded-md transition-colors duration-300`}
           />
-          {/* <button
-            className={`${textColor} p-2 rounded-full transition-colors duration-300 hover:${accentColor}`}
-          > */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -115,29 +148,35 @@ const UserComponent = () => {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
-          {/* </button> */}
         </div>
 
         <div className={`h-full overflow-y-auto`}>
-          {/* User List */}
           <div className={`${bgColor} p-4`}>
             {friends.map((friend, index) => (
               <div
                 key={index}
                 className={`flex items-center border ${userBorderColor} ${userBgColor} ${userTextColor} ${userPadding} mb-2 rounded-md transition-colors duration-300`}
                 onClick={() => {
-                  // dispatch(chatchange(friend.user));
                   dispatch(chatchange(friend));
                 }}
               >
-                <img
-                  src={
-                    friend.profilePicture ||
-                    "https://api.multiavatar.com/Binx%20Bond.svg"
-                  }
-                  alt="User"
-                  className="w-8 h-8 rounded-full mr-2"
-                />
+                <div className="relative">
+                  <img
+                    src={
+                      friend.profilePicture ||
+                      "https://api.multiavatar.com/Binx%20Bond.svg"
+                    }
+                    alt="User"
+                    className="w-8 h-8 rounded-full mr-2"
+                  />
+                  <div
+                    className={`absolute bottom-0 right-0 w-3 h-3 rounded-full ${
+                      onlineUsers.get(friend.email)
+                        ? "bg-green-500"
+                        : "bg-red-500"
+                    } border-2 ${borderColor}`}
+                  ></div>
+                </div>
                 <div className="flex-grow">
                   <p className="font-bold">{friend.name}</p>
                   <p>{friend.email}</p>

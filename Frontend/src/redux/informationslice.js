@@ -37,5 +37,5 @@ const Informationslice = createSlice({
     }
 })
 
-export const { modechange, authchange, userchange, chatchange,rerenderchange } = Informationslice.actions;
+export const { modechange, authchange, userchange, chatchange, rerenderchange } = Informationslice.actions;
 export default Informationslice.reducer;

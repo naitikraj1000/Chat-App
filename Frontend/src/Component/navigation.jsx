@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Profile from "./profile";
 import Setting from "./setting";
 import Info from "./info";
@@ -30,6 +30,7 @@ const NavigationComponent = ({
   const dispatch = useDispatch();
 
   const toggleDarkMode = () => {
+    // console.log("Toggling Dark Mode");
     dispatch(modechange(!isDarkMode));
     setIsDarkMode(!isDarkMode);
   };
@@ -38,22 +39,14 @@ const NavigationComponent = ({
     return state.information.user;
   });
 
-  const socket = io(import.meta.env.VITE_BACKEND_URL);
-  const [render, setRender] = useState(
-    useSelector((state) => {
-      return state.information.rerender;
-    })
-  );
 
-  socket.on("render", (msg) => {
-    console.log("Rerendering", msg);
-    dispatch(rerenderchange(!render));
-    setRender(!render);
-  });
+
+
+
 
   async function handleAddFriend() {
     setshowFriendBox(false);
-   let email = addFriendemail;
+    let email = addFriendemail;
     setAddFriendemail("");
     console.log("Adding friend with email:", email);
 
@@ -87,14 +80,14 @@ const NavigationComponent = ({
     setshowFriendBox(false);
     let grp_name = addFriendemail;
     setAddFriendemail("");
-  
+
     const formData = new FormData();
     formData.append("name", grp_name);
     formData.append("members", [user._id]);
     formData.append("admin", user._id);
-    
+
     console.log("Adding Group with name:", grp_name);
-  
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/set_group`,
@@ -104,12 +97,15 @@ const NavigationComponent = ({
         }
       );
       const res = await response.json();
-  
+
       if (response.ok) {
         console.log("Group Added Successfully", res);
         // You might want to update your UI or state here
       } else {
-        console.log("Error in Adding Group", res.error || "Unknown error occurred");
+        console.log(
+          "Error in Adding Group",
+          res.error || "Unknown error occurred"
+        );
       }
     } catch (error) {
       console.error("Error in Adding Group", error);

@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import EmojiPicker from "emoji-picker-react";
 import { useState } from "react";
 import Filehandler from "../../utility/filehandler";
 import Info from "./info";
 import { useDispatch, useSelector } from "react-redux";
-import { modechange } from "../redux/informationslice";
+import { modechange,rerenderchange } from "../redux/informationslice";
 import { Link } from "react-router-dom";
+
+
 
 const MessageComponent = ({ loadinfo, setLoadinfo }) => {
   const isDarkMode = useSelector((state) => {
@@ -34,6 +36,7 @@ const MessageComponent = ({ loadinfo, setLoadinfo }) => {
   const chatuser = useSelector((state) => {
     return state.information.chat;
   });
+
 
   // objmsg={msg: "message", file: "file",date:" ",id:email_addr} // uploading  message
 
@@ -96,8 +99,6 @@ const MessageComponent = ({ loadinfo, setLoadinfo }) => {
 
     const isgrp = chatuser.admin != undefined;
 
-    
-
     formData.append("isgrp", isgrp);
 
     console.log("Fetching Messages", user, chatuser);
@@ -154,10 +155,6 @@ const MessageComponent = ({ loadinfo, setLoadinfo }) => {
       return state.information.rerender;
     }),
   ]);
-
-  // setInterval(() => {
-  //   getMsg();
-  // }, 1000);
 
   async function sendMsg() {
     console.log("Sending Msg", chatuser);

@@ -11,12 +11,13 @@ import mongoose from 'mongoose';
 
 
 
-dotenv.config();   
+dotenv.config();
 Connect_DB();
 
 const app = express();
 const server = http.createServer(app);
 
+// Apply body-parser middleware to all routes (app.use(middleware))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,6 +37,11 @@ const io = new Server(server, {
     }
 });
 
+
+let user_socket = new Map();
+let socket_user = new Map();
+
+
 io.on('connection', (socket) => {
     console.log(`User connected ${socket.id}`);
     socket.on("chat message", (msg) => {
@@ -43,9 +49,41 @@ io.on('connection', (socket) => {
 
     });
 
+    socket.on("join_server", ({ user, id }) => {
+
+        console.log("User is Online", user.email);
+        console.log("Socket ID", socket.id);
+
+        user_socket.set(user, socket.id);
+        socket_user.set(socket.id, user);
+
+        // this user has joined the server with socket_id as id 
+        // find the list of friend of this user who are online using the user_socket map (Do in Future)
+        // emit the list of online friends to this user       
+        let friends = [...user_socket.keys()];
+        
+   
+
+        io.emit("online_friends", friends);  // Convert to array
+
+
+
+
+    });
+
+
 
     socket.on("disconnect", (reason) => {
         console.log(`socket ${socket.id} disconnected due to ${reason}`);
+        let user = socket_user.get(socket.id);
+        console.log("User is Offline", user?.email);
+        user_socket.delete(user);
+        socket_user.delete(socket.id);
+
+        // this user has left the server with socket_id as id
+        // find the list of friend of this user who are online using the user_socket map (Do in Future)
+        // emit the list of online friends to this user
+        io.emit("online_friends", [...user_socket.keys()]);  // Convert to array
     });
 
 
@@ -109,6 +147,8 @@ app.post('/auth', (req, res) => {
 
 const port = process.env.PORT || 5000;
 
+
+// Because we are using socket.io, we need to use server.listen instead of app.listen
 server.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`);
 });

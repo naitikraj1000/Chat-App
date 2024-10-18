@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import Informationreducer from './informationslice'
+import { configureStore } from '@reduxjs/toolkit';
+import informationReducer from './informationslice.js';
 
+const store = configureStore({
+  reducer: {
+    information: informationReducer,
+  },
+});
 
-export default configureStore({
-    reducer: {
-        information: Informationreducer,
-    }
-})
+export default store;

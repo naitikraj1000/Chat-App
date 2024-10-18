@@ -23,6 +23,9 @@ routing.post('/auth', multer_upload.single("file"), (req, res) => {
   if (refreshToken) {
     try {
       const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+     
+      console.log("Decoded Token", decodedToken);
+
       return res.send({ success: "Refresh Token Valid", user: decodedToken.user });
     } catch (error) {
       console.error("Error verifying refresh token", error);
